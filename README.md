@@ -1,6 +1,6 @@
 # 🚀 AI-Powered URL Shortener
 
-An **AI-powered URL shortener** that creates **SEO-friendly smart short links** instead of random strings. It predicts **click engagement**, suggests the **best sharing time**, and detects **spam or malicious URLs** for a safer experience.
+An AI-powered URL shortener that creates SEO-friendly smart short links instead of random strings. It predicts click engagement, suggests the best sharing time, and detects spam or malicious URLs for a safer experience.
 
 ## 📌 Features
 
@@ -12,8 +12,8 @@ An **AI-powered URL shortener** that creates **SEO-friendly smart short links** 
 
 ## 🛠 Tech Stack
 
-- **Backend:** [NestJS](https://nestjs.com/) (Node.js framework)  
-- **Database:** PostgreSQL / MongoDB  
+- **Backend:** (Node.js framework)  
+- **Database:** PostgreSQL  
 - **AI Integration:** OpenAI GPT / FastText / spaCy (for keyword extraction & spam detection)  
 - **Caching & Optimization:** Redis  
 - **Authentication:** JWT / OAuth  
@@ -23,7 +23,7 @@ An **AI-powered URL shortener** that creates **SEO-friendly smart short links** 
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/AI-Powered-URL-Shortener.git
+git clone https://github.com/raviverma199/AI-Powered-URL-Shortener.git
 cd AI-Powered-URL-Shortener
 ```
 
@@ -36,7 +36,6 @@ npm install
 Create a `.env` file and configure the following variables:
 ```env
 PORT=3000
-DATABASE_URL=your_database_url
 REDIS_URL=your_redis_url
 OPENAI_API_KEY=your_openai_api_key
 JWT_SECRET=your_jwt_secret
@@ -88,9 +87,6 @@ GET /stats/:shortId
 ## 🤝 Contributing
 Feel free to submit issues and pull requests! 🚀
 
-## 📜 License
-MIT License. See `LICENSE` for details.
-
 ---
 
-🔥 Built with ❤️ using NestJS and AI.
+🔥 Built with ❤️ using Nodejs.
