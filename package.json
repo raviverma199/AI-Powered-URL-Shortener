@@ -1,0 +1,23 @@
+{
+  "name": "ai-powered-url-shortener",
+  "version": "1.0.0",
+  "description": "An **AI-powered URL shortener** that creates **SEO-friendly smart short links** instead of random strings. It predicts **click engagement**, suggests the **best sharing time**, and detects **spam or malicious URLs** for a safer experience.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.21.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7"
+  }
+}
