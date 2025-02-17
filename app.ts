@@ -1,13 +1,15 @@
-import express from 'express';
-const app = express();
-import dotenv from 'dotenv';
+import express, { Application } from "express";
+const app: Application = express();
+import dotenv from "dotenv";
+import helmet from "helmet";
 dotenv.config();
 
+if (!process.env.PORT) {
+  throw new Error("Port is not defined");
+}
 
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(process.env.PORT || 4000, () => {
-    console.log('Server is running on port 4000');
-}).on('error', (err) => {
-    console.error(err);
-    process.exit(1);
-});
+export default app;
