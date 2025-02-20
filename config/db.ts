@@ -13,7 +13,7 @@ const ExecuteQuery = async (query: string, values: any[]): Promise<any> => {
   const client = await connection.connect();
   try {
     const result = await client.query(query, values);
-    return result;
+    return result.rows;
   } catch (error) {
     console.error(error);
     throw error;
