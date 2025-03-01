@@ -56,9 +56,6 @@ export const CreateUser = async (
   }
 };
 
-// interface TokenResponse{
-
-// }
 
 // Contoller for the Login
 export const loginUser = async (
@@ -97,15 +94,17 @@ export const loginUser = async (
     }
 
     delete userQuery?.[0].userpassword; // Payload for the Token
-    console.log(userQuery)
-    let Token =  AssignToken(userQuery?.[0]); // Assign Token to the User
+    console.log(userQuery[0]);
+    let Token = AssignToken(userQuery?.[0], res); // Assign Token to the User
 
     // Successful login response
-    return res
-      .status(200)
-      .json({ message: "Login successful", user: { userQuery: userQuery ,Token: Token} });
+    return res.status(200).json({
+      message: "Login successful",
+      user: { userQuery: userQuery, Token: Token },
+    });
   } catch (error) {
     console.error("Login error:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+  
