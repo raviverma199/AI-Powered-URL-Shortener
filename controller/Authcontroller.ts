@@ -94,7 +94,6 @@ export const loginUser = async (
     }
 
     delete userQuery?.[0].userpassword; // Payload for the Token
-    console.log(userQuery[0]);
     let Token = AssignToken(userQuery?.[0], res); // Assign Token to the User
 
     // Successful login response
@@ -107,4 +106,19 @@ export const loginUser = async (
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-  
+
+
+
+export const logoutUser = async (req: Request, res: Response, next: NextFunction):Promise<Response | void> => {
+  try {
+    res.clearCookie("authToken", {httpOnly: true, secure: true, sameSite: 'strict'}); // Clear the Token
+
+    // Send a success response with proper security headers
+    res.setHeader('Cache-Control', 'no-store');
+
+    return res.status(200).json({ message: 'Logout successful' });
+  } catch (error) {
+    console.error(error);
+    logger.error(error);
+  }
+}
