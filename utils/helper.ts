@@ -13,6 +13,27 @@ async function HasedPassword(password: string): Promise<string> {
   }
 }
 
+// Function to check if custom name is correct format
+function CheckCustomName(customName: string): boolean {
+  try {
+    customName = customName.trim();
+    if (!/^[a-zA-Z\s]+$/.test(customName)) {
+      return false;
+    }
+    return true;
+  } catch (error) {
+    logger.error(error); // Log the error
+  }
+}
 
+// Function to check is URL is valid
+function isValidURL(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 
-export {  HasedPassword }; 
+export { HasedPassword, CheckCustomName, isValidURL };

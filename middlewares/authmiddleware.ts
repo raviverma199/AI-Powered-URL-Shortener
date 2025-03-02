@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 // Interface for Payload
 interface PayLoad {
+  id: number;
   username: string;
   useremail: string;
   role?: string;
@@ -13,7 +14,7 @@ interface PayLoad {
 const AssignToken = (user: PayLoad, res: Response): string => {
   try {
     let Token = jwt.sign(
-      { name: user.username, email: user.useremail, role: user?.role ?? "Admin" },
+      {id: user.id, name: user.username, email: user.useremail, role: user?.role ?? "Admin" },
       process.env.JWT_SECRET_KEY as string,
       { expiresIn: "1h" }
     );

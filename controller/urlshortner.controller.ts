@@ -1,8 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import logger from "../utils/errorlogs";
+import { CheckCustomName, isValidURL } from "../utils/helper";
+import ExecuteQuery from "../config/db";
 
+interface AuthenticatedRequest extends Request {
+    user?: unknown;
+  }
 
-export const shortUrl = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+export const shortUrl = async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
         let { originalUrl, customName } = req.body;
 
@@ -10,11 +15,27 @@ export const shortUrl = async (req: Request, res: Response, next: NextFunction):
             return res.status(400).json({ msg: "Please Provide the URL" });
         }
 
-        try {
-            new URL(originalUrl); // Check if the URL is validx
-        } catch (error) {
-            return res.status(400).json({ msg: "Invalid URL" });// if URL is not valid
+        // Validate the URL
+        if(!isValidURL(originalUrl)) {
+            return res.status(400).json({ msg: "Invalid URL" });
         }
+
+        // Check if the custom name is provided
+        if(!CheckCustomName(customName)) { 
+            return res.status(400).json({ msg: "Invalid Custom Name" });
+        }
+
+        // Check if the custom name already exists
+        let isNameExists = await ExecuteQuery(
+            "SELECT customname FROM url_shortener WHERE customname = $1", 
+            [customName]
+        );
+        if(isNameExists.rowCount > 0) {
+            return res.status(400).json({ msg: "Custom Name Already Exists" });
+        }
+
+
+        let userId = req?.user// Get the User ID from the Request
 
     } catch (error) {
         logger.error(error);
